@@ -135,6 +135,9 @@ def main():
             except queue.Empty:
                 break
 
+        if(msg is None):
+            continue
+
         # msg now contains latest msg
         try:
             msg = json.loads(msg)
