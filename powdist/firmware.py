@@ -19,7 +19,7 @@ def main():
     while True:
         for x in pins:
             pin_status = GPIO.input(x)
-            if(pin_status is 1):
+            if(pin_status is 0):
                 print('Pin {0} set low when should be high.  Setting pin {0} high.'.format(x))
                 GPIO.output(x, GPIO.HIGH)
             else:
