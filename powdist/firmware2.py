@@ -5,7 +5,7 @@ import argparse
 import queue
 import netifaces
 import json
-import log
+import vizier.log as log
 
 
 pins = [14, 15, 16, 18, 20, 21, 24, 25]
