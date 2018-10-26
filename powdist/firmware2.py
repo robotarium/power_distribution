@@ -146,7 +146,7 @@ def main():
             continue
 
         status_data = msg
-        pd_node.put(status_link, status_data)
+        pd_node.put(status_link, json.dumps(status_data))
 
         # At this point, msg contains a valid JSON message
         # structure is {'pins': 0/1}
