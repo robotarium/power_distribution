@@ -128,15 +128,15 @@ def main():
             GPIO.output(x, GPIO.HIGH)
 
     while True:
-        msg = None
+
+        msg = input_q.get()
+
+        # Clear out other messages
         while True:
             try:
                 msg = input_q.get_nowait()
             except queue.Empty:
                 break
-
-        if(msg is None):
-            continue
 
         # msg now contains latest msg
         try:
