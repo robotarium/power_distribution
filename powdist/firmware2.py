@@ -47,7 +47,7 @@ def create_node_descriptor(end_point):
     """
     node_descriptor = \
         {
-            'end_point': end_point,
+            'end_point': 'pd_'+end_point,
             'links':
             {
                 '/status': {'type': 'DATA'},
