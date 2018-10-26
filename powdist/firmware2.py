@@ -132,7 +132,7 @@ def main():
         while True:
             try:
                 msg = input_q.get_nowait()
-            except queue.Empty():
+            except queue.Empty:
                 break
 
         # msg now contains latest msg
