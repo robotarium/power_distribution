@@ -129,6 +129,7 @@ def main():
 
     while True:
 
+        print(input_q.qsize())
         msg = input_q.get()
 
         # Clear out other messages
