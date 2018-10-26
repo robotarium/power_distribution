@@ -140,7 +140,7 @@ def main():
 
         # msg now contains latest msg
         try:
-            msg = json.loads(msg)
+            msg = json.loads(msg.decode(encoding='UTF-8'))
         except Exception as e:
             logger.warning(repr(e))
             continue
