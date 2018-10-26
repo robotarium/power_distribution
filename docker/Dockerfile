@@ -6,6 +6,8 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y git python3 python3-dev gcc python-rpi.gpio
 # musl-sdev linux-headers
 
+RUN apt-get install -y python3-pip
+
 ADD https://api.github.com/repos/robotarium/vizier/git/refs/heads/master version.json
 RUN git clone https://github.com/robotarium/vizier
 RUN cd vizier && python3 -m pip install .
