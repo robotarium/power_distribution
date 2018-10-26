@@ -124,8 +124,8 @@ def main():
         GPIO.setup(x, GPIO.OUT)
 
     for x in pins:
-            logger.info('Setting pin {0} high'.format(x))
-            GPIO.output(x, GPIO.HIGH)
+        logger.info('Setting pin {0} high'.format(x))
+        GPIO.output(x, GPIO.HIGH)
 
     while True:
 
@@ -154,13 +154,15 @@ def main():
         if('state' in msg):
             state = msg['state']
             if(state is 1):
-                logger.info('Setting GPIO high')
                 for x in pins:
+                    logger.info('Setting GPIO pin {} high.'.format(x))
                     GPIO.output(x, GPIO.HIGH)
+                    time.sleep(0.1)
             else:
-                logger.info('Setting GPIO low')
                 for x in pins:
+                    logger.info('Setting GPIO pin {} low.'.format(x))
                     GPIO.output(x, GPIO.LOW)
+                    time.sleep(0.1)
 
 
 if __name__ == "__main__":
