@@ -111,8 +111,8 @@ def main():
         # Don't try to make nodes too quickly
         time.sleep(1)
 
-    status_link = pd_node.puttable_links[0]
-    input_link = pd_node.subscribable_links[0]
+    status_link = list(pd_node.puttable_links)[0]
+    input_link = list(pd_node.subscribable_links)[0]
 
     status_data = {}
 
