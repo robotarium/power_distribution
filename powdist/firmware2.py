@@ -150,7 +150,7 @@ def main():
         pd_node.put(status_link, json.dumps(status_data))
 
         # At this point, msg contains a valid JSON message
-        # structure is {'pins': 0/1}
+        # structure is {'state': 0/1}
         if('state' in msg):
             state = msg['state']
             if(state is 1):

@@ -14,5 +14,5 @@ RUN cd vizier && python3 -m pip install .
 
 ADD https://api.github.com/repos/robotarium/power_distribution/git/refs/heads/master version.json
 RUN git clone https://github.com/robotarium/power_distribution
-RUN cd gritsbot_2 && python3 -m pip install . 
+RUN cd power_distribution && python3 -m pip install . 
 
