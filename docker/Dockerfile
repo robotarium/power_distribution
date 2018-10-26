@@ -1,9 +1,9 @@
-FROM arm32v6/alpine
+FROM resin/rpi-raspbian
 
-RUN apk update && apk upgrade
+RUN apt-get update && apt-get -y upgrade
 
 # Get python + deps.  Most of these are actually for netifaces install
-RUN apk add git python3 python3-dev gcc musl-sdev linux-headers python-rpi.gpio
+RUN apt-get install -y git python3 python3-dev gcc musl-sdev linux-headers python-rpi.gpio
 
 ADD https://api.github.com/repos/robotarium/vizier/git/refs/heads/master version.json
 RUN git clone https://github.com/robotarium/vizier
