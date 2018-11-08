@@ -1,1 +1,1 @@
-docker build --tag robotarium:power_distribution .
+docker build --tag robotarium:power_distribution --build-arg ROBO_HOST=$1 --build-arg ROBO_HOST=$2 .
