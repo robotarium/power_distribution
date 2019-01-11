@@ -156,11 +156,11 @@ def main():
             if len(states) == len(PINS):
                 for i in range(len(states)):
                     if(states[i] is 1):
-                        logger.info('Setting GPIO pin {} high.'.format(x))
+                        logger.info('Setting GPIO pin {} high.'.format(PINS[i]))
                         GPIO.output(PINS[i], GPIO.HIGH)
                         time.sleep(0.1)
                     else:
-                        logger.info('Setting GPIO pin {} low.'.format(x))
+                        logger.info('Setting GPIO pin {} low.'.format(PINS[i]))
                         GPIO.output(PINS[i], GPIO.LOW)
                         time.sleep(0.1)
             else:
