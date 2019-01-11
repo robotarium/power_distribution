@@ -56,4 +56,25 @@ docker logs firmware --follow --tail 50
 To know what the container firware is printing for example. 
 Note: The flag "follow" is to show what's being printed in a live fashion. The flag "tail" simply shows you the last x lines (in this case 50).
 
+## 1- How to Add A Modification to the Repository
 
+- The idea here is that after every modification, we push the edit to github, and rebuild the docker container then also push the container. Ideally, the watchtowers on the chargers would then detect the update and pull it. 
+- The first thing after editing your desired file in the repo 'power_distribution' is to navigate to that repo in a terminal.
+- Then run (you might need to use sudo):
+```
+git add -u
+git status
+git commit -m 'comment on the update...'
+git push
+```
+- Then navigate to the 'power_distribution/docker' repo and re-build the container:
+```
+sudo ./docker_build.sh 192.168.1.8 1884
+```
+The first argument in that command is the ip address of the router. That ip address can be retrieved by running 'ifconfig' in any terminal on the main computer. The second argument in that command is the port being used. 
+"Think of the IP-address as the building address and the port as the apt#" - Paul
+- Next, we want to push the container we just built:
+```
+sudo ./docker_push.sh
+```
+- Congrats! We are done. Now, we just want to check if the chargers got the updated version. Various ways of doing this is possible. One way is to ssh into one of the power stations (check part 1 of this guide) and check the watchtower log. 
