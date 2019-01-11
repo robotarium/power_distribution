@@ -8,7 +8,7 @@ import json
 import vizier.log as log
 
 
-pins = [14, 15, 16, 18, 20, 21, 24, 25]
+PINS = [14, 15, 16, 18, 20, 21, 24, 25]
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -119,11 +119,11 @@ def main():
     input_q = pd_node.subscribe(input_link)
 
     # Initially set GPIO pins high
-    for x in pins:
+    for x in PINS:
         logger.info('Setting pin {0} as output'.format(x))
         GPIO.setup(x, GPIO.OUT)
 
-    for x in pins:
+    for x in PINS:
         logger.info('Setting pin {0} high'.format(x))
         GPIO.output(x, GPIO.HIGH)
 
@@ -152,17 +152,19 @@ def main():
         # At this point, msg contains a valid JSON message
         # structure is {'state': 0/1}
         if('state' in msg):
-            state = msg['state']
-            if(state is 1):
-                for x in pins:
-                    logger.info('Setting GPIO pin {} high.'.format(x))
-                    GPIO.output(x, GPIO.HIGH)
-                    time.sleep(0.1)
+            states = msg['state']
+            if len(states) == len(PINS):
+                for i in range(len(states)):
+                    if(states[i] is 1):
+                        logger.info('Setting GPIO pin {} high.'.format(x))
+                        GPIO.output(PINS[i], GPIO.HIGH)
+                        time.sleep(0.1)
+                    else:
+                        logger.info('Setting GPIO pin {} low.'.format(x))
+                        GPIO.output(PINS[i], GPIO.LOW)
+                        time.sleep(0.1)
             else:
-                for x in pins:
-                    logger.info('Setting GPIO pin {} low.'.format(x))
-                    GPIO.output(x, GPIO.LOW)
-                    time.sleep(0.1)
+                logger.warning('Expected a message of length {0} but got {1}. Message: {2}'.format(len(PINS), len(states), states))
 
 
 if __name__ == "__main__":
