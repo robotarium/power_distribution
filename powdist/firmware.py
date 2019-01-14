@@ -143,6 +143,7 @@ def main():
         try:
             msg = json.loads(msg.decode(encoding='UTF-8'))
         except Exception as e:
+            logger.warning('Malformed json message.')
             logger.warning(repr(e))
             continue
 
@@ -158,13 +159,18 @@ def main():
                     if(states[i] is 1):
                         logger.info('Setting GPIO pin {} high.'.format(PINS[i]))
                         GPIO.output(PINS[i], GPIO.HIGH)
-                        time.sleep(0.1)
                     else:
                         logger.info('Setting GPIO pin {} low.'.format(PINS[i]))
                         GPIO.output(PINS[i], GPIO.LOW)
-                        time.sleep(0.1)
+
+                    # We cannot switch GPIO too quickly!
+                    time.sleep(0.1)
             else:
                 logger.warning('Expected a message of length {0} but got {1}. Message: {2}'.format(len(PINS), len(states), states))
+    
+    # Maybe we want to add this at some point?
+    # GPIO.cleanup()
+
 
 
 if __name__ == "__main__":

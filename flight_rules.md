@@ -56,7 +56,7 @@ docker logs firmware --follow --tail 50
 To know what the container firware is printing for example. 
 Note: The flag "follow" is to show what's being printed in a live fashion. The flag "tail" simply shows you the last x lines (in this case 50).
 
-## 1- How to Add A Modification to the Repository
+## 2- How to Add A Modification to the Repository
 
 - The idea here is that after every modification, we push the edit to github, and rebuild the docker container then also push the container. Ideally, the watchtowers on the chargers would then detect the update and pull it. 
 - The first thing after editing your desired file in the repo 'power_distribution' is to navigate to that repo in a terminal.
